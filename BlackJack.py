@@ -11,8 +11,15 @@ def cardValue(card):
 def handvalue(hand):
     """iterates through hand returns values"""
     value=0
+    acecount=0
     for i in range(len(hand)):
-        value+=cardValue(hand[i])
+        card=cardValue(hand[i])
+        value+=card
+        if card==11:
+            acecount+=1
+    if value >21:
+        if acecount>0:
+            value-=(10*acecount)
     return value
     
 
@@ -51,13 +58,14 @@ def deal(deck):
     card=drawCard(deck)
     return card
 
+
 def round(deck):
     """plays a round of plackJack, prints out winner"""
 
 
+
 if __name__=="__main__":
 
-        
         
     
 
