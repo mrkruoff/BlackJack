@@ -59,12 +59,49 @@ def deal(deck):
     return card
 
 
+def dealer_turn(deck, dealerhandvalue, dealerdeck):
+    pass
+
+
 def round(deck):
     """plays a round of plackJack, prints out winner"""
+    dealer=[]
+    player=[]
+    dealerhand=0
+    playerhand=0
+    for i in range (2):
+        card=deal(deck)
+        dealer.append(card)
+        card=deal(deck)
+        player.append(card)
+    dealerhand=dealerHandDelt(dealer)
+    playerhand=playerHandDelt(player)
+    if dealerhand==21 and playerhand!=21:
+        print("Sorry The Dealer Wins with Blackjack")
 
 
+def game():
+    """Game function calls round until quit"""
+    gamecont=True
+    gameDeck=[]
+    createDeck(gameDeck)
+    shuffleDeck(gameDeck)
+    startLength=cardsLeft(gameDeck)
+    while(gamecont):
+        round(gameDeck)
+        print("Another Round[y/n]")
+        cardsLeftIn=cardsLeft(gameDeck)
+        if cardsLeftIn < (.25*startLength):
+            gameDeck=[]
+            createDeck(gameDeck)
+            shuffleDeck(gameDeck)
+        choice=input()
+        if choice=="n":
+            gamecont=False
+    
 
 if __name__=="__main__":
+    game()
 
         
     
