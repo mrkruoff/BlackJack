@@ -62,6 +62,13 @@ def deal(deck):
     return card
 
 def dealer_turn(deck, dealerhandvalue, dealerdeck):
+    while(dealerhandvalue<17):
+        card=deal(deck)
+        printCard(card)
+        dealerdeck.append(card)
+        dealerhandvalue=handvalue(dealerdeck)
+        if dealerhandvalue >21:
+            return dealerhandvalue
     return dealerhandvalue
 
 def player_turn(deck, player_hand_value, player_deck):
