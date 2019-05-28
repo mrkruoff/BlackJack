@@ -38,9 +38,12 @@ def dealerHandDelt(hand):
         printHand(hand)
         return value
     else:
-        card=hand[0]
-        printCard(card)
-        print("XX")
+        printHand(hand)
+        #TODO: Uncomment these when done testing
+        #card=hand[0]
+        #printCard(card)
+       # print("XX")
+        return value
         
 def printCard(card):
     print(str(card[0])+card[1]+" ", end='')
@@ -58,17 +61,33 @@ def deal(deck):
     card=drawCard(deck)
     return card
 
-
 def dealer_turn(deck, dealerhandvalue, dealerdeck):
-    pass
+    return dealerhandvalue
 
+def player_turn(deck, player_hand_value, player_deck):
+    hit_or_stand=input("Hit(h) or Stand (s)\n")
+    while hit_or_stand!="s":
+        card=deal(deck)
+        printCard(card)
+        player_deck.append(card)
+        player_hand_value=handvalue(player_deck)
+        if player_hand_value >21:
+            return player_hand_value
+        hit_or_stand = input("Hit(h) or Stand (s)\n")
+    return player_hand_value
+
+def result(playerhand, dealerhand):
+    if playerhand>dealerhand:
+        print("Congrats you win")
+    elif playerhand==dealerhand:
+        print("Push")
+    else:
+        print("Dealer Wins")
 
 def round(deck):
     """plays a round of plackJack, prints out winner"""
     dealer=[]
     player=[]
-    dealerhand=0
-    playerhand=0
     for i in range (2):
         card=deal(deck)
         dealer.append(card)
@@ -78,6 +97,13 @@ def round(deck):
     playerhand=playerHandDelt(player)
     if dealerhand==21 and playerhand!=21:
         print("Sorry The Dealer Wins with Blackjack")
+    else:
+        playerhand=player_turn(deck, playerhand, player)
+        if playerhand>21:
+            print("Sorry  You Busted")
+        else:
+            dealerhand=dealer_turn(deck, dealerhand, dealer)
+            result(playerhand, dealerhand)
 
 
 def game():
