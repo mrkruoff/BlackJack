@@ -11,3 +11,5 @@ Create difference between soft and hard 17 <br>
 Add automated testing as project gets more complicated <br>
 Add ability to "bet" <br>
 
+If for some reason you need code for a blackjack command line game feel free to use this for whatever you need. 
+
